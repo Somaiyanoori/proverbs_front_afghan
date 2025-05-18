@@ -5,22 +5,21 @@
   }
 body {
     margin: 0;
-     /* dark background */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  .nav {
+  .ap-nav {
     position: relative;
     width: 530px;
     height: 60px;
-    margin: 20px auto 0 auto; /* top margin + center horizontally */
+    margin: 20px auto 0 auto;
   }
-
-  .container {
+  
+  .ap-container {
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(10px);        /* <-- blur effect */
-    -webkit-backdrop-filter: blur(50px); /* for Safari */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(50px);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -29,8 +28,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(95, 176, 217, 0.5);
   }
-
-  .btn {
+  
+  .ap-btn {
     padding: 0.5em 1.5em;
     color: #76c4ea;
     cursor: pointer;
@@ -38,20 +37,20 @@ body {
     font-weight: 600;
     user-select: none;
   }
-
-  .btn:hover {
-    background: rgba(77, 186, 237, 0.25);
-    color: rgb(255, 255, 255);
+  
+  .ap-btn:hover {
+    background: rgba(91, 190, 235, 0.25);
+    color: white;
     border-radius: 8px;
   }
-
-  .outline {
+  
+  .ap-outline {
     position: absolute;
     inset: 0;
     pointer-events: none;
   }
-
-  .rect {
+  
+  .ap-rect {
     stroke-dashoffset: 5;
     stroke-dasharray: 0 0 10 40 10 40;
     transition: 0.5s;
@@ -61,57 +60,56 @@ body {
     rx: 12;
     ry: 12;
   }
-
-  .container:hover .outline .rect {
+  
+  .ap-container:hover .ap-outline .ap-rect {
     transition: 999999s;
     stroke-dashoffset: 1;
     stroke-dasharray: 0;
   }
-
-  .btn:nth-child(1):hover ~ svg .rect {
+  
+  .ap-btn:nth-child(1):hover ~ svg .ap-rect {
     stroke-dashoffset: 0;
     stroke-dasharray: 0 2 8 73.3 8 10.7;
   }
-
-  .btn:nth-child(2):hover ~ svg .rect {
+  
+  .ap-btn:nth-child(2):hover ~ svg .ap-rect {
     stroke-dashoffset: 0;
     stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
   }
-
-  .btn:nth-child(3):hover ~ svg .rect {
+  
+  .ap-btn:nth-child(3):hover ~ svg .ap-rect {
     stroke-dashoffset: 0;
     stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
   }
-
-  .btn:nth-child(4):hover ~ svg .rect {
+  
+  .ap-btn:nth-child(4):hover ~ svg .ap-rect {
     stroke-dashoffset: 0;
     stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
   }
-
-  .btn:hover ~ .outline .rect {
+  
+  .ap-btn:hover ~ .ap-outline .ap-rect {
     stroke-dashoffset: 0;
     stroke-dasharray: 0 0 10 40 10 40;
     transition: 0.5s !important;
   }
-
-  /* Responsive tweak: on small screens, make navbar full width with smaller padding */
+  
   @media (max-width: 440px) {
-    .nav {
+    .ap-nav {
       width: 100%;
       max-width: 400px;
       margin: 20px auto 0 auto;
     }
-
-    .container {
+  
+    .ap-container {
       padding: 0.3em;
     }
-
-    .btn {
+  
+    .ap-btn {
       padding: 0.4em 0.8em;
       font-size: 14px;
     }
   }
-
+  
  /* Slider */
  .slider-container {
   margin: 0 auto;                
@@ -203,7 +201,7 @@ body {
   padding: 10px 20px;
   border: none;
   background: #fff;
-  color: #333;
+  color: #2b96ed;
   cursor: pointer;
   opacity: 0;
   animation: fadeIn 1s ease-in-out 0.6s forwards;
@@ -244,8 +242,8 @@ body {
 }
 
 .slider-controls button:hover {
-  background: #555;
-  color: #fff;
+  background: #3593d6;
+  color: #040101;
 }
 
 @media (max-width: 768px) {
@@ -300,3 +298,330 @@ body {
     padding: 6px 12px;
   }
 }
+/*Searching*/
+.search-form {
+  position: relative;
+  top:60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+  width: 50px;
+  height: 50px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid white;
+  padding: 5px;
+}
+
+.search-form input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: none;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.search-form .fa {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: #527aff;
+  text-align: center;
+  font-size: 1.2em;
+  transition: all 1s;
+}
+
+.search-form:hover {
+  width: 300px;
+  cursor: pointer;
+}
+
+.search-form:hover input {
+  display: block;
+}
+
+.search-form:hover .fa {
+  background: #5297ff;
+  color: white;
+}
+
+/*CARDS*/
+
+section {
+  height: 100%;
+  
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 710px;
+}
+h3 {
+  color: #000;
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  
+}
+.font{
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+a.zoomed .card-inner {
+  overflow: auto;
+}
+a.opacity-0 {
+  opacity: 0;
+}
+.overflow {
+  overflow: hidden;
+}
+.overflow .background {
+  opacity: 0 !important;
+}
+
+.background {
+  background-color: #73b2df;
+  border-radius: 20px;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  
+}
+.card-wraper {
+  display: grid;
+  
+  grid-template-columns: repeat(3, minmax(0, 2fr));
+  justify-content: space-between;
+}
+a.card {
+  text-decoration: none;
+ 
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+}
+.card-main {
+  border: 1px solid #4a9cdb;
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  
+  background-color: #bad8e8;
+}
+.card:hover .card-main {
+  position: relative;
+  z-index: 20;
+}
+.card-inner {
+  position: relative;
+  z-index: 50;
+  
+  height: 100%;
+}
+.card-inner div {
+  height: 100%;
+  
+}
+img {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  body {
+    height: 100%;
+  }
+  .container {
+    max-width: 720px;
+    
+  }
+  .card-wraper {
+    grid-template-columns: repeat(1, minmax(0, 2fr));
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container {
+    max-width: 520px;
+  }
+  .card-wraper {
+    grid-template-columns: repeat(1, minmax(0, 2fr));
+  }
+  .card-main {
+    padding: 30px 20px;
+  }
+  a.card {
+    padding: 6px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .container {
+    max-width: 100%;
+  }
+  .card-wraper {
+    grid-template-columns: repeat(1, minmax(0, 2fr));
+  }
+  .card-main {
+    padding: 40px;
+  }
+  a.card {
+    padding: 10px;
+  }
+}
+/*Delete button */
+.custom-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgb(106, 169, 224);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  position: relative;
+  top: 30%;
+
+}
+
+.custom-svgIcon {
+  width: 12px;
+  transition-duration: .3s;
+}
+
+.custom-svgIcon path {
+  fill: white;
+}
+
+.custom-button:hover {
+  width: 140px;
+  border-radius: 50px;
+  transition-duration: .3s;
+  background-color: rgb(52, 162, 225);
+  align-items: center;
+}
+
+.custom-button:hover .custom-svgIcon {
+  width: 50px;
+  transition-duration: .3s;
+  transform: translateY(60%);
+}
+
+.custom-button::before {
+  position: absolute;
+  top: -20px;
+  content: "Delete";
+  color: white;
+  transition-duration: .3s;
+  font-size: 2px;
+}
+
+.custom-button:hover::before {
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(30px);
+  transition-duration: .3s;
+}
+
+/*Updata button */
+.custom-cta {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  left: 50%;
+  top: 10%;
+  background: none;
+  cursor: pointer;
+}
+
+.custom-cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.custom-cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #4d8dcc;
+}
+
+.custom-cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #4594e3;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.custom-cta:hover:before {
+  width: 93%;
+  background: #81b9f1;
+}
+
+.custom-cta:hover svg {
+  transform: translateX(0);
+}
+
+.custom-cta:active {
+  transform: scale(0.95);
+}
+/*Add button*/

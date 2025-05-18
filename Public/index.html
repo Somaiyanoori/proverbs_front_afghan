@@ -8,27 +8,28 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
 
     <title>AFG PROVERBS</title>
   </head>
 
   <body>
     <header>
-      <!--slider-->
-      <div class="nav">
-        <div class="container">
-          <div class="btn">Home</div>
-          <!-- Main landing page -->
-          <div class="btn">Proverbs</div>
-          <!-- List or categories of proverbs -->
-          <div class="btn">Submit</div>
-          <!-- Form for users to submit new proverbs -->
-          <div class="btn">About</div>
-          <!-- Info about the site/project -->
-          <div class="btn">Contact</div>
-          <!-- Contact or feedback form -->
+      <!--navbar-->
+      <div class="ap-nav">
+        <div class="ap-container">
+          <div class="ap-btn">Home</div>
+          <div class="ap-btn">Proverbs</div>
+          <div class="ap-btn">Submit</div>
+          <div class="ap-btn">About</div>
+          <div class="ap-btn">Contact</div>
           <svg
-            class="outline"
+            class="ap-outline"
             overflow="visible"
             width="530"
             height="60"
@@ -36,7 +37,7 @@
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
-              class="rect"
+              class="ap-rect"
               pathLength="100"
               x="0"
               y="0"
@@ -140,6 +141,196 @@
           </button>
         </div>
       </div>
+      <br />
+      <!--Searching-->
+      <form class="search-form" action="">
+        <input type="search" placeholder="Search here ..." />
+        <i class="fa fa-search"></i>
+      </form>
+
+      <!--Cards-->
+      <section>
+        <div class="container max-w-5xl mx-auto px-8">
+          <div class="card-wraper">
+            <div class="background" id="background"></div>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Rose</h3>
+                    <p class="font">
+                      A type of flowering shrub, its name comes from the Latin
+                      word Rosa. The rose has been
+                    </p>
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+                      <span>Updata</span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+               
+                </div>
+              </div>
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Tulip</h3>
+                    <p class="font">
+                      Tulips are spring-blooming perennials that grow from bulbs.
+                    </p>
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+                      <span>Updata</span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Sunflower</h3>
+                    <p class="font">
+                      Sunflowers are known for being “happy” flowers, making them
+                    </p>
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+                      <span>Updata</span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Daisy</h3>
+                    <p class="font">
+                      Daisies are simple yet sophisticated and are some of the
+                    </p>
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+                      <span>Updata</span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Orchid</h3>
+                    <p class="font">
+                      Orchids are delicate, exotic and graceful. They represent
+                    </p>
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+                      <span>Updata</span>
+                      <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3>Chrysanthemum</h3>
+                    <p class="font">
+                      Chrysanthemum flowers come in a variety of sizes, ranging
+                    </p>
+                    <!--Delete button -->
+                    <button class="custom-button">
+                      <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                        <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                      </svg>
+                    </button>
+                    <!--Updata button-->
+                    <button class="custom-cta">
+  <span>Updata</span>
+  <svg width="15px" height="10px" viewBox="0 0 13 10">
+    <path d="M1,5 L11,5"></path>
+    <polyline points="8 1 12 5 8 9"></polyline>
+  </svg>
+</button>
+
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+        </div>
+      </section>
     </main>
 
     <footer></footer>
