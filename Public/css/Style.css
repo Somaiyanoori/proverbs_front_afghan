@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+     /* dark background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .nav {
+    position: relative;
+    width: 530px;
+    height: 60px;
+    margin: 20px auto 0 auto; /* top margin + center horizontally */
+  }
+
+  .container {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px);        /* <-- blur effect */
+    -webkit-backdrop-filter: blur(50px); /* for Safari */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(95, 176, 217, 0.5);
+  }
+
+  .btn {
+    padding: 0.5em 1.5em;
+    color: #76c4ea;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  .btn:hover {
+    background: rgba(77, 186, 237, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 8px;
+  }
+
+  .outline {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .rect {
+    stroke-dashoffset: 5;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s;
+    stroke: #6cbfe9;
+    stroke-width: 5;
+    fill: transparent;
+    rx: 12;
+    ry: 12;
+  }
+
+  .container:hover .outline .rect {
+    transition: 999999s;
+    stroke-dashoffset: 1;
+    stroke-dasharray: 0;
+  }
+
+  .btn:nth-child(1):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 2 8 73.3 8 10.7;
+  }
+
+  .btn:nth-child(2):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+  }
+
+  .btn:nth-child(3):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+  }
+
+  .btn:nth-child(4):hover ~ svg .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+  }
+
+  .btn:hover ~ .outline .rect {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 0 0 10 40 10 40;
+    transition: 0.5s !important;
+  }
+
+  /* Responsive tweak: on small screens, make navbar full width with smaller padding */
+  @media (max-width: 440px) {
+    .nav {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto 0 auto;
+    }
+
+    .container {
+      padding: 0.3em;
+    }
+
+    .btn {
+      padding: 0.4em 0.8em;
+      font-size: 14px;
+    }
+  }
