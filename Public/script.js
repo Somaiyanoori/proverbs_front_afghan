@@ -1,4 +1,5 @@
 console.log("JavaScript loaded!");
+//Slider
 const next = document.querySelector(".slider-next");
 const prev = document.querySelector(".slider-prev");
 
