@@ -6,6 +6,10 @@ const app = express();
 const PORT = 3000;
 const dataPath = "./data/proverbs.json"; // Path to the data file
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+
 // Ensure the data directory exists
 if (!fs.existsSync("./data")) {
   console.log("Data directory does not exist");
