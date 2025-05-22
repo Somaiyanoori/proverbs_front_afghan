@@ -107,6 +107,7 @@ app.put("/proverbs/:id", (req, res) => {
 
 // Route for contact page
 app.get("/contact", (req, res) => {
+  console.log("Rendering contact page");
   res.render("contact");
 });
 
