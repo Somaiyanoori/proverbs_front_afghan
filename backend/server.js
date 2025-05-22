@@ -7,7 +7,7 @@ import { dirname } from "path";
 import crypto from "crypto";
 import methodOverride from "method-override";
 
-// Setup __dirname and __filename for ES modules
+// Setup __dirname and __filename for
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
   res.render("index", { title, categories, proverbs });
 });
 
-// Filtered proverbs route with optional category query
+// Filtered proverbs route with optional category
 app.get("/proverbs", (req, res) => {
   const proverbs = readData();
   const categories = ["Wisdom", "Humor", "Life", "Culture"];
@@ -87,53 +87,6 @@ app.get("/api/proverbs", (req, res) => {
   res.json(proverbs);
 });
 
-// API: Get a specific proverb by ID
-app.get("/proverbs/:id", (req, res) => {
-  const id = req.params.id; // keep as string UUID
-  const proverbs = readData();
-  const foundProverb = proverbs.find((p) => p.id === id);
-  if (foundProverb) {
-    res.json(foundProverb);
-  } else {
-    res.status(404).json({ message: "Proverb not found by this ID." });
-  }
-});
-
-// POST: Add a new proverb
-app.post("/proverbs", (req, res) => {
-  const { textDari, textPashto, translationEn, meaning, category } = req.body;
-
-  if (!textDari || !textPashto || !translationEn || !meaning || !category) {
-    return res.status(400).json({ message: "Please fill out all fields." });
-  }
-
-  const proverbs = readData();
-
-  const exists = proverbs.some(
-    (p) =>
-      p.textDari === textDari &&
-      p.textPashto === textPashto &&
-      p.translationEn === translationEn
-  );
-
-  if (exists) {
-    return res.status(409).json({ message: "This proverb already exists." });
-  }
-
-  const newProverb = {
-    id: crypto.randomUUID(), // string UUID
-    textDari,
-    textPashto,
-    translationEn,
-    meaning,
-    category,
-  };
-
-  proverbs.push(newProverb);
-  writeData(proverbs);
-  res.status(201).json(newProverb);
-});
-
 // PUT: Update an existing proverb
 app.put("/proverbs/:id", (req, res) => {
   const id = req.params.id; // keep as string UUID
@@ -154,7 +107,7 @@ app.put("/proverbs/:id", (req, res) => {
 
 // Route for contact page
 app.get("/contact", (req, res) => {
-  res.render("contact"); // renders views/contact.ejs
+  res.render("contact");
 });
 
 // DELETE: Delete a proverb by ID

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Smooth scroll to #proverbs if category is selected
+  // Smooth scroll
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has("category")) {
     const target = document.getElementById("proverbs");
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = btn.closest(".card");
       if (!card) return;
 
-      // گرفتن داده‌ها از کارت
       const id = card.getAttribute("data-id");
       const textDari = card.querySelector(".dari-text").textContent.trim();
       const textPashto = card.querySelector(".pashto-text").textContent.trim();
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .textContent.trim();
       const category = card.querySelector("h3").textContent.trim();
 
-      // مقداردهی به فرم
       document.getElementById("edit-id").value = id;
       document.getElementById("edit-textDari").value = textDari;
       document.getElementById("edit-textPashto").value = textPashto;
@@ -68,17 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("edit-meaning").value = meaning;
       document.getElementById("edit-category").value = category;
 
-      // نمایش فرم
       editModal.style.display = "block";
     });
   });
 
-  // بستن فرم با دکمه لغو
   editCancelBtn.addEventListener("click", () => {
     editModal.style.display = "none";
   });
 
-  // ارسال فرم و درخواست PUT به سرور
   editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -101,13 +96,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        alert("ضرب‌المثل با موفقیت به‌روزرسانی شد.");
-        window.location.reload(); // رفرش صفحه برای مشاهده تغییرات
+        alert("Proverb updated successfully.");
+        window.location.reload();
       } else {
-        alert("خطا در به‌روزرسانی ضرب‌المثل.");
+        alert("Error updating the proverb.");
       }
     } catch (error) {
-      alert("خطا در ارسال درخواست.");
+      alert("Error sending the request.");
       console.error(error);
     }
   });
