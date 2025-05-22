@@ -1,28 +1,42 @@
 import express from "express";
 import bodyParser from "body-parser";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import crypto from "crypto";
+import methodOverride from "method-override";
+
+// Setup __dirname and __filename for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const PORT = 3000;
-const dataPath = "./data/proverbs.json"; // Path to the data file
+const dataPath = path.join(__dirname, "data/proverbs.json");
 
+// Set EJS as view engine and static folder
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Ensure the data directory exists
-if (!fs.existsSync("./data")) {
-  console.log("Data directory does not exist");
+// Create data folder and file if not exists
+if (!fs.existsSync(path.join(__dirname, "data"))) {
+  fs.mkdirSync(path.join(__dirname, "data"));
+}
+if (!fs.existsSync(dataPath)) {
+  fs.writeFileSync(dataPath, "[]");
 }
 
-// Middlewares
+// Middleware for parsing JSON and urlencoded bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Read data from the file
+// Read proverbs from file
 const readData = () => {
   try {
-    const data = fs.readFileSync(dataPath);
+    const data = fs.readFileSync(dataPath, "utf-8");
     return data ? JSON.parse(data) : [];
   } catch (error) {
     console.error("Error reading data:", error);
@@ -30,94 +44,101 @@ const readData = () => {
   }
 };
 
-//  Get a random proverb, optionally filtered by category or keyword
-app.get("/proverbs/random", (req, res) => {
+// Write proverbs to file
+const writeData = (data) => {
+  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+};
+
+// Home route: Show all proverbs on the home page
+app.get("/", (req, res) => {
   const proverbs = readData();
-  const { category, keyword } = req.query;
-
-  let filtered = proverbs;
-
-  if (category || keyword) {
-    filtered = proverbs.filter((p) => {
-      const categories = Array.isArray(p.category) ? p.category : [p.category];
-
-      const matchesCategory = category
-        ? categories.some((cat) => cat.toLowerCase() === category.toLowerCase())
-        : true;
-
-      const matchesKeyword = keyword
-        ? Object.values(p).some((value) =>
-            String(value).toLowerCase().includes(keyword.toLowerCase())
-          )
-        : true;
-
-      return matchesCategory && matchesKeyword;
-    });
-  }
-
-  if (filtered.length === 0) {
-    return res.status(404).json({ message: "No matching proverbs found." });
-  }
-
-  const randomIndex = Math.floor(Math.random() * filtered.length);
-  const randomProverb = filtered[randomIndex];
-  res.json(randomProverb);
+  const categories = ["Wisdom", "Humor", "Life", "Culture"];
+  const title = "Welcome to Afghan Proverbs";
+  res.render("index", { title, categories, proverbs });
 });
 
-// Get a single proverb by ID
+// Filtered proverbs route with optional category query
+app.get("/proverbs", (req, res) => {
+  const proverbs = readData();
+  const categories = ["Wisdom", "Humor", "Life", "Culture"];
+  const { category } = req.query;
+
+  let filteredProverbs = proverbs;
+  let title = "All Proverbs";
+
+  if (category) {
+    filteredProverbs = proverbs.filter((p) => {
+      const cats = Array.isArray(p.category) ? p.category : [p.category];
+      return cats.some((cat) => cat.toLowerCase() === category.toLowerCase());
+    });
+    title = `Proverbs - ${category}`;
+  }
+
+  res.render("index", {
+    proverbs: filteredProverbs,
+    categories,
+    title,
+  });
+});
+
+// API: Get all proverbs as JSON
+app.get("/api/proverbs", (req, res) => {
+  const proverbs = readData();
+  res.json(proverbs);
+});
+
+// API: Get a specific proverb by ID
 app.get("/proverbs/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id; // keep as string UUID
   const proverbs = readData();
   const foundProverb = proverbs.find((p) => p.id === id);
   if (foundProverb) {
     res.json(foundProverb);
   } else {
-    res
-      .status(404)
-      .json({ message: `We cannot find this proverb with the given ID.` });
+    res.status(404).json({ message: "Proverb not found by this ID." });
   }
 });
 
-//Add a new proverb
-app.post("/proverb", (req, res) => {
-  const newProverb = {
-    id: Date.now(),
-    textDari: req.body.textDari,
-    textPashto: req.body.textPashto,
-    textEnglish: req.body.textEnglish,
-    meaning: req.body.meaning,
-    category: req.body.category,
-  };
+// POST: Add a new proverb
+app.post("/proverbs", (req, res) => {
+  const { textDari, textPashto, translationEn, meaning, category } = req.body;
+
+  if (!textDari || !textPashto || !translationEn || !meaning || !category) {
+    return res.status(400).json({ message: "Please fill out all fields." });
+  }
+
   const proverbs = readData();
+
+  const exists = proverbs.some(
+    (p) =>
+      p.textDari === textDari &&
+      p.textPashto === textPashto &&
+      p.translationEn === translationEn
+  );
+
+  if (exists) {
+    return res.status(409).json({ message: "This proverb already exists." });
+  }
+
+  const newProverb = {
+    id: crypto.randomUUID(), // string UUID
+    textDari,
+    textPashto,
+    translationEn,
+    meaning,
+    category,
+  };
+
   proverbs.push(newProverb);
-  fs.writeFileSync(dataPath, JSON.stringify(proverbs, null, 2));
+  writeData(proverbs);
   res.status(201).json(newProverb);
 });
 
-//Update an existing
+// PUT: Update an existing proverb
 app.put("/proverbs/:id", (req, res) => {
-  const proverbId = parseInt(req.params.id);
+  const id = req.params.id; // keep as string UUID
   const updatedProverb = req.body;
 
-  const proverbs = readData();
-  const proverbIndex = proverbs.findIndex(
-    (proverb) => proverb.id === proverbId
-  );
-
-  if (proverbIndex === -1) {
-    return res
-      .status(404)
-      .json({ message: `Sorry, we can't find this proverb.` });
-  }
-
-  proverbs[proverbIndex] = { ...proverbs[proverbIndex], ...updatedProverb }; //spread operator😁
-  fs.writeFileSync(dataPath, JSON.stringify(proverbs, null, 2));
-  res.status(200).json(proverbs[proverbIndex]);
-});
-
-//Delete a proverb
-app.delete("/proverbs/:id", (req, res) => {
-  const id = parseInt(req.params.id);
   const proverbs = readData();
   const index = proverbs.findIndex((p) => p.id === id);
 
@@ -125,12 +146,35 @@ app.delete("/proverbs/:id", (req, res) => {
     return res.status(404).json({ message: "Proverb not found." });
   }
 
-  proverbs.splice(index, 1);
-  fs.writeFileSync(dataPath, JSON.stringify(proverbs, null, 2));
-  res.status(200).json({ message: "Proverb deleted successfully." });
+  proverbs[index] = { ...proverbs[index], ...updatedProverb };
+
+  writeData(proverbs);
+  res.status(200).json(proverbs[index]);
 });
 
-// Start server
+// Route for contact page
+app.get("/contact", (req, res) => {
+  res.render("contact"); // renders views/contact.ejs
+});
+
+// DELETE: Delete a proverb by ID
+app.delete("/proverbs/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const proverbs = readData();
+
+  const index = proverbs.findIndex((p) => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Proverb not found." });
+  }
+
+  proverbs.splice(index, 1);
+  writeData(proverbs);
+
+  res.redirect("/proverbs");
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

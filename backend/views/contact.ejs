@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Contact</title>
+  </head>
+
+  <body>
+    <!----------------------------navbar--------------------->
+    <header><%- include('partials/header') %></header>
+    <main>
+      <!--------------------------------Register form --------------------->
+      <div class="reg-wrapper">
+        <form class="reg-form">
+          <p class="reg-title">Register</p>
+          <p class="reg-message">Signup now and get full access to our site.</p>
+          <div class="reg-flex">
+            <label>
+              <input required placeholder="" type="text" class="reg-input" />
+              <span>Firstname</span>
+            </label>
+
+            <label>
+              <input required placeholder="" type="text" class="reg-input" />
+              <span>Lastname</span>
+            </label>
+          </div>
+
+          <label>
+            <input required placeholder="" type="email" class="reg-input" />
+            <span>Email</span>
+          </label>
+
+          <label>
+            <input required placeholder="" type="password" class="reg-input" />
+            <span>Password</span>
+          </label>
+
+          <label>
+            <input required placeholder="" type="password" class="reg-input" />
+            <span>Confirm password</span>
+          </label>
+
+          <button class="reg-submit">Submit</button>
+          <p class="reg-signin">
+            Already have an account? <a href="#">Signin</a>
+          </p>
+        </form>
+      </div>
+    </main>
+
+    <!-----------------------footer--------------------->
+    <footer><%- include('partials/footer') %></footer>
+  </body>
+</html>

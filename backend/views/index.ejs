@@ -3,10 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title><%= title %></title>
   </head>
   <body>
     <header><%- include('partials/header') %></header>
+
     <main>
       <!-- Slider Section -->
       <div class="slider-container">
@@ -89,23 +96,142 @@
           </button>
         </div>
       </div>
+
       <!-- ===================== Search Form ===================== -->
-      <form class="search-form" action="">
-        <input type="search" placeholder="Search here ..." />
-        <i class="fa fa-search"></i>
+      <form class="search-form" action="/proverbs/search" method="POST">
+        <input type="search" name="keyword" placeholder="Search here ..." />
+        <button type="submit"><i class="fa fa-search"></i></button>
       </form>
 
       <!-- ===================== Category Buttons ===================== -->
       <section id="category">
         <div class="category-buttons">
-          <button class="cat-btn">wisdom</button>
-          <button class="cat-btn">morality</button>
-          <button class="cat-btn">practicality</button>
-          <button class="cat-btn">experience</button>
-          <button class="cat-btn">reality</button>
+          <% categories.forEach(category => { %>
+          <button class="cat-btn" data-category="<%= category %>">
+            <%= category %>
+          </button>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- ===================== Proverbs Cards ===================== -->
+      <section id="proverbs">
+        <div class="container max-w-5xl mx-auto px-8">
+          <div class="card-wrapper">
+            <% proverbs.forEach(proverb => { %>
+            <a
+              href="javascript:void(0)"
+              class="card relative group block p-2 h-full w-full"
+              data-id="<%= proverb.id %>"
+            >
+              <div class="card-main">
+                <div class="card-inner">
+                  <div>
+                    <h3><%= proverb.category %></h3>
+
+                    <p class="font dari-text">
+                      <strong class="str_cat">متن دری:</strong>
+                      <span><%= proverb.textDari %></span>
+                    </p>
+
+                    <p class="font pashto-text">
+                      <strong class="str_cat">متن پشتو:</strong>
+                      <span><%= proverb.textPashto %></span>
+                    </p>
+                    <hr />
+                    <p class="font english-text">
+                      <strong class="str_cat">English Translation:</strong>
+                      <span><%= proverb.translationEn %></span>
+                    </p>
+                    <p class="font english-text">
+                      <strong class="str_cat">Meaning:</strong>
+                      <span><%= proverb.meaning %></span>
+                    </p>
+
+                    <!--Delete button-->
+                    <div class="proverb-actions">
+                      <form
+                        action="/proverbs/<%= proverb.id %>?_method=DELETE"
+                        method="POST"
+                        style="display: inline"
+                      >
+                        <button
+                          class="custom-button"
+                          type="submit"
+                          title="Delete"
+                          onclick="return confirm('Are you sure you want to delete this proverb?');"
+                        >
+                          <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                            <path
+                              d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"
+                            ></path>
+                          </svg>
+                        </button>
+                      </form>
+
+                      <button class="custom-cta card-update-btn">
+                        <span>Update</span>
+                        <svg width="15px" height="10px" viewBox="0 0 13 10">
+                          <path d="M1,5 L11,5"></path>
+                          <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <% }) %>
+          </div>
         </div>
       </section>
     </main>
+
+    <!-- hidden form 😁 -->
+    <div id="edit-modal" class="modal-overlay" style="display: none">
+      <div class="modal-content">
+        <form id="edit-form" class="modal-form">
+          <input type="hidden" id="edit-id" />
+
+          <label for="edit-textDari"><p class="dari-text">متن دری</p></label>
+          <textarea
+            id="edit-textDari"
+            rows="2"
+            required
+            class="dari-text"
+          ></textarea>
+
+          <label for="edit-textPashto"
+            ><P class="pashto-text">متن پشتو</P></label
+          >
+          <textarea
+            id="edit-textPashto"
+            rows="2"
+            required
+            class="pashto-text"
+          ></textarea>
+
+          <label for="edit-translationEn" class="english-text"
+            >English Translation</label
+          >
+          <input type="text" id="edit-translationEn" required />
+
+          <label for="edit-meaning" class="english-text">Meaning</label>
+          <textarea id="edit-meaning" rows="3" required></textarea>
+
+          <label for="edit-category">Category</label>
+          <input type="text" id="edit-category" required />
+
+          <div class="modal-buttons">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" id="edit-cancel" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <footer><%- include('partials/footer') %></footer>
   </body>
 </html>

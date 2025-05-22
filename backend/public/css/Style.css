@@ -368,8 +368,7 @@ section {
 h3 {
   color: #0428ab;
   font-size: 30px;
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-weight: 700px;
   direction: ltr;
   text-align: left;
   
@@ -377,7 +376,7 @@ h3 {
 .font{
   color: #003366;
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 50px;
   line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -385,18 +384,7 @@ h3 {
   -webkit-box-orient: vertical;
 }
 
-a.zoomed .card-inner {
-  overflow: auto;
-}
-a.opacity-0 {
-  opacity: 0;
-}
-.overflow {
-  overflow: hidden;
-}
-.overflow .background {
-  opacity: 0 !important;
-}
+
 
 .background {
   background-color: #73b2df;
@@ -406,7 +394,7 @@ a.opacity-0 {
   opacity: 0;
   
 }
-.card-wraper {
+.card-wrapper {
   display: grid;
   
   grid-template-columns: repeat(3, minmax(0, 2fr));
@@ -425,7 +413,7 @@ a.card {
   border: 1px solid #4a9cdb;
   padding: 40px;
   width: 100%;
-  height: 100%;
+  height: 500px;
   min-height: 300px;
   border-radius: 20px;
   overflow: hidden;
@@ -433,24 +421,8 @@ a.card {
   text-align: left;
   background-color: #bad8e8;
 }
-.card:hover .card-main {
-  position: relative;
-  z-index: 20;
-}
-.card-inner {
-  position: relative;
-  z-index: 50;
-  
-  height: 100%;
-}
-.card-inner div {
-  height: 100%;
-  
-}
-img {
-  height: 100%;
-  width: 100%;
-}
+
+
 
 @media screen and (max-width: 1199px) {
   .container {
@@ -518,9 +490,18 @@ img {
   transition-duration: .3s;
   overflow: hidden;
   position: relative;
- top: 18%;
+ 
 
 }
+.proverb-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  margin-top: 30px;
+  gap: 10px;
+
+}
+
 .custom-svgIcon {
   width: 12px;
   transition-duration: .3s;
@@ -557,20 +538,24 @@ img {
   transform: translateY(30px);
   transition-duration: .3s;
 }
-/*=============================Updata button ===============================*/
-.custom-cta {
+/*============================= Card Update Button ===============================*/
+.card-update-btn {
+  
   position: relative;
   margin: auto;
-  padding: 12px 18px;
-  transition: all 0.2s ease;
+  padding: 12px 20px;
   border: none;
-  left: 60%;
-  top: 5%;
   background: none;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #4d8dcc;
+  z-index: 1;
 }
 
-.custom-cta:before {
+.card-update-btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -581,42 +566,120 @@ img {
   width: 45px;
   height: 45px;
   transition: all 0.3s ease;
+  z-index: -1;
 }
 
-.custom-cta span {
-  position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #4d8dcc;
-}
-
-.custom-cta svg {
-  position: relative;
-  top: 0;
-  margin-left: 10px;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: #4594e3;
-  stroke-width: 2;
-  transform: translateX(-5px);
-  transition: all 0.3s ease;
-}
-
-.custom-cta:hover:before {
-  width: 93%;
+.card-update-btn:hover::before {
+  width: 100%;
   background: #81b9f1;
 }
 
-.custom-cta:hover svg {
-  transform: translateX(0);
-}
-
-.custom-cta:active {
+.card-update-btn:active {
   transform: scale(0.95);
 }
+
+/*============================= Modal Background ===============================*/
+#edit-modal {
+
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*============================= Modal Content ===============================*/
+#edit-modal .modal-content {
+  background-color: #b7d4e9;
+  padding: 24px 32px;
+  border-radius: 10px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/*============================= Form Inputs ===============================*/
+#edit-form input[type="text"],
+#edit-form textarea,
+#edit-form select {
+  width: 100%;
+  padding: 10px 14px;
+  margin: 8px 0 16px 0;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+#edit-form input[type="text"]:focus,
+#edit-form textarea:focus,
+#edit-form select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/*============================= Form Buttons Container ===============================*/
+#edit-form .modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/*============================= Submit Button ===============================*/
+#edit-form button[type="submit"] {
+  position: relative;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #4d8dcc;
+  z-index: 1;
+}
+
+#edit-form button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+
+/*============================= Cancel Button ===============================*/
+#edit-cancel {
+  position: relative;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #09051b;
+  z-index: 1;
+}
+
+
 /*================================category button=========================*/
 .category-buttons {
   display: flex;
@@ -908,78 +971,5 @@ img {
   to {
     transform: scale(1.8);
     opacity: 0;
-  }
-}
-/*============================Submit page========================== */
-.center-wrapper {
-  height: 60vh; 
-  display: flex;
-  justify-content: center; 
-  align-items: center;  
-  padding: 1rem;
-  box-sizing: border-box;
-}
-
-.add-proverb-form {
-  display: flex;
-  background: white;
-  border-radius: 1rem;
-  background: linear-gradient(45deg, #c5c5c5 0%, #ffffff 100%);
-  box-shadow: 20px 20px 20px #d8d8d8, -10px -10px 20px #f8f8f8;
-  padding: 0.3rem;
-  gap: 0.3rem;
-}
-
-.proverb-input {
-  border-radius: 0.8rem 0 0 0.8rem;
-  background: #e8e8e8;
-  box-shadow: inset 13px 13px 10px #dcdcdc,
-              inset -13px -13px 10px #f4f4f4;
-  width: 100%;
-  flex-basis: 75%;
-  padding: 1rem;
-  border: none;
-  border-left: 2px solid #4998FF;
-  color: #5e5e5e;
-  transition: all 0.2s ease-in-out;
-}
-
-.proverb-input:focus {
-  border-left: 2px solid #4998FF;
-  outline: none;
-  box-shadow: inset 13px 13px 10px #BFF0FA,
-              inset -13px -13px 10px #f4f4f4;
-}
-
-.submit-proverb-btn {
-  flex-basis: 25%;
-  padding: 1rem;
-  background: linear-gradient(135deg, #BFF0FA 0%, #4998FF 100%);
-  font-weight: 900;
-  letter-spacing: 0.3rem;
-  text-transform: uppercase;
-  color: white;
-  border: none;
-  width: 100%;
-  border-radius: 0 1rem 1rem 0;
-  transition: all 0.2s ease-in-out;
-}
-
-.submit-proverb-btn:hover {
-  background: linear-gradient(135deg, #BFF0FA 0%, #4998ffc4 100%);
-}
-
-@media (max-width: 500px) {
-  .add-proverb-form {
-    flex-direction: column;
-  }
-
-  .proverb-input {
-    border-radius: 0.8rem;
-  }
-
-  .submit-proverb-btn {
-    padding: 1rem;
-    border-radius: 0.8rem;
   }
 }

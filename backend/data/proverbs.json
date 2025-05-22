@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "textDari": "عقل سالم در بدن سالم است.",
+    "textPashto": "سالم عقل په سالم بدن کې دی.",
+    "translationEn": "A healthy mind resides in a healthy body.",
+    "meaning": "Physical health is essential for mental well-being.",
+    "category": "wisdom"
+  },
+  {
+    "id": 2,
+    "textDari": "پند بزرگان چراغ راه است.",
+    "textPashto": "د مشرانو نصیحت د لارې څراغ دی.",
+    "translationEn": "The advice of elders is a guiding light.",
+    "meaning": "Wisdom from experience helps guide us.",
+    "category": "wisdom"
+  },
+  {
+    "id": 3,
+    "textDari": "ز گهواره تا گور دانش بجوی.",
+    "textPashto": "له زانګو تر ګور پورې پوهه زده کړه.",
+    "translationEn": "Seek knowledge from the cradle to the grave.",
+    "meaning": "Learning is a lifelong journey.",
+    "category": "wisdom"
+  },
+  {
+    "id": 4,
+    "textDari": "فرهنگ هر جامعه، راهنمای رفتار مردم آن است.",
+    "textPashto": "فرهنګ د هر ټولنې د خلکو د چلند لارښود دی.",
+    "translationEn": "The culture of a society guides the behavior of its people.",
+    "meaning": "Culture shapes how people act and interact.",
+    "category": "culture"
+  },
+  {
+    "id": 5,
+    "textDari": "فرهنگ را نمی‌توان از کتاب یاد گرفت، باید آن را زندگی کرد.",
+    "textPashto": "فرهنګ له کتاب نه زده کېږي، ژوند یې باید وکړې.",
+    "translationEn": "Culture can't be learned from books; it must be lived.",
+    "meaning": "True understanding of culture comes from experience.",
+    "category": "culture"
+  },
+  {
+    "id": 6,
+    "textDari": "فرهنگ را نمی‌توان از کتاب یاد گرفت، باید آن را زندگی کرد.",
+    "textPashto": "فرهنګ له کتاب نه زده کېږي، ژوند یې باید وکړې.",
+    "translationEn": "Culture can't be learned from books; it must be lived.",
+    "meaning": "True understanding of culture comes from experience.",
+    "category": "culture"
+  },
+  {
+    "id": 7,
+    "textDari": "هر کسی از ظن خود شد یار من.",
+    "textPashto": "هر څوک زما سره د خپل ګمان له مخې مل دی.",
+    "translationEn": "Everyone became my companion through their own assumptions.",
+    "meaning": "People see others through their own beliefs.",
+    "category": "life"
+  },
+  {
+    "id": 8,
+    "textDari": "زندگی بدون لبخند، مانند آسمان بدون خورشید است.",
+    "textPashto": "بې خندا ژوند لکه آسمان بې لمره دی.",
+    "translationEn": "Life without a smile is like a sky without the sun.",
+    "meaning": "Smiling brightens life like the sun brightens the sky.",
+    "category": "life"
+  },
+  {
+    "id": 9,
+    "textDari": "هر کسی از ظن خود شد یار من.",
+    "textPashto": "هر څوک زما سره د خپل ګمان له مخې مل دی.",
+    "translationEn": "Everyone became my companion through their own assumptions.",
+    "meaning": "People see others through their own beliefs.",
+    "category": "life"
+  },
+  {
+    "id": 10,
+    "textDari": "عقل سرخ است، ولی دل سیاه نیست.",
+    "textPashto": "عقل سور دی، خو زړه تور نه دی.",
+    "translationEn": "Wisdom is red, but the heart is not black.",
+    "meaning": "Sometimes wisdom warns but feelings remain kind.",
+    "category": "humor"
+  },
+  {
+    "id": 11,
+    "textDari": "بچه که باشی، عقل به چشم است!",
+    "textPashto": "کله چې ماشوم یې، عقل په سترګو کې دی!",
+    "translationEn": "When you are a child, wisdom is in the eyes!",
+    "meaning": "Children often seem naive but observe everything.",
+    "category": "humor"
+  },
+  {
+    "id": 12,
+    "textDari": "بگو خنده برکت است، نه شکم سیر!",
+    "textPashto": "وایه خندا برکت ده، نه ډوډۍ سیر!",
+    "translationEn": "Say laughter is a blessing, not a full belly!",
+    "meaning": "Laughter enriches the soul though it doesn’t fill the stomach.",
+    "category": "humor"
+  }
+]
