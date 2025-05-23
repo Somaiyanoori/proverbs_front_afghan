@@ -4,10 +4,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import crypto from "crypto";
 import methodOverride from "method-override";
 
-// Setup __dirname and __filename for
+// Setup __dirname and __filename
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -89,8 +88,7 @@ app.get("/api/proverbs", (req, res) => {
 
 // PUT: Update an existing proverb
 app.put("/proverbs/:id", (req, res) => {
-  const id = req.params.id; // keep as string UUID
-  const updatedProverb = req.body;
+  const id = Number(req.params.id);
 
   const proverbs = readData();
   const index = proverbs.findIndex((p) => p.id === id);
@@ -99,7 +97,7 @@ app.put("/proverbs/:id", (req, res) => {
     return res.status(404).json({ message: "Proverb not found." });
   }
 
-  proverbs[index] = { ...proverbs[index], ...updatedProverb };
+  proverbs[index] = { ...proverbs[index], ...updatedProverb, id };
 
   writeData(proverbs);
   res.status(200).json(proverbs[index]);
@@ -107,13 +105,12 @@ app.put("/proverbs/:id", (req, res) => {
 
 // Route for contact page
 app.get("/contact", (req, res) => {
-  console.log("Rendering contact page");
   res.render("contact");
 });
 
 // DELETE: Delete a proverb by ID
 app.delete("/proverbs/:id", (req, res) => {
-  const id = Number(req.params.id);
+  const id = Number(req.params.id); // تبدیل رشته به عدد
   const proverbs = readData();
 
   const index = proverbs.findIndex((p) => p.id === id);
@@ -126,6 +123,26 @@ app.delete("/proverbs/:id", (req, res) => {
   writeData(proverbs);
 
   res.redirect("/proverbs");
+});
+
+// POST: Add a new proverb with numeric incremental id
+app.post("/proverbs", (req, res) => {
+  const proverbs = readData();
+  const maxId = proverbs.reduce((max, p) => (p.id > max ? p.id : max), 0);
+
+  const newProverb = {
+    id: maxId + 1,
+    textDari: req.body.textDari,
+    textPashto: req.body.textPashto,
+    translationEn: req.body.translationEn,
+    meaning: req.body.meaning,
+    category: req.body.category,
+  };
+
+  proverbs.push(newProverb);
+  writeData(proverbs);
+
+  res.redirect("/");
 });
 
 // Start the server

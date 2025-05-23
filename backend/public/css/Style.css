@@ -475,6 +475,118 @@ a.card {
 #str_cat{
   color: #0077b6;
 }
+/* Add button */
+.add-button-container {
+  text-align: center;
+  padding: 1rem 2rem;
+}
+.btn-add {
+  background-color: #2d6cdf;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+/* Add Modal Overlay */
+#add-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Add Modal Content */
+#add-modal .modal-content-add {
+  background-color: #b7d4e9;
+  padding: 24px 32px;
+  border-radius: 10px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+/* Form Inputs */
+#add-form input[type="text"],
+#add-form textarea,
+#add-form select {
+  width: 100%;
+  padding: 10px 14px;
+  margin: 8px 0 16px 0;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+}
+
+#add-form input[type="text"]:focus,
+#add-form textarea:focus,
+#add-form select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* Buttons container */
+#add-form .modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Submit button */
+#add-form button[type="submit"] {
+  position: relative;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #4d8dcc;
+  z-index: 1;
+}
+
+#add-form button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+/* Cancel button */
+#add-cancel {
+  position: relative;
+  padding: 12px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #09051b;
+  z-index: 1;
+}
 /*============================Delete button=========================== */
 .custom-button {
   width: 50px;

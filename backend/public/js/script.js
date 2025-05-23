@@ -180,3 +180,94 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch(() => alert("Failed to update proverb"));
   });
 });
+//add model
+const openAddModal = document.getElementById("open-add-modal");
+const addModal = document.getElementById("add-modal");
+const addCancel = document.getElementById("add-cancel");
+
+openAddModal.addEventListener("click", () => {
+  addModal.style.display = "block";
+});
+
+addCancel.addEventListener("click", () => {
+  addModal.style.display = "none";
+});
+document.getElementById("addProverbBtn").addEventListener("click", () => {
+  const category = document.getElementById("newCategory").value.trim();
+  const textDari = document.getElementById("newTextDari").value.trim();
+  const textPashto = document.getElementById("newTextPashto").value.trim();
+  const translationEn = document
+    .getElementById("newTranslationEn")
+    .value.trim();
+  const meaning = document.getElementById("newMeaning").value.trim();
+
+  if (!category || !textDari || !textPashto || !translationEn || !meaning) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  const newId = Date.now();
+
+  const newCardHTML = `
+  <a href="javascript:void(0)" class="card relative group block p-2 h-full w-full" data-id="${newId}">
+    <div class="card-main">
+      <div class="card-inner">
+        <div>
+          <h3>${category}</h3>
+
+          <p class="font dari-text">
+            <strong class="str_cat">متن دری:</strong>
+            <span>${textDari}</span>
+          </p>
+
+          <p class="font pashto-text">
+            <strong class="str_cat">متن پشتو:</strong>
+            <span>${textPashto}</span>
+          </p>
+
+          <hr />
+          <p class="font english-text">
+            <strong class="str_cat">English Translation:</strong>
+            <span>${translationEn}</span>
+          </p>
+
+          <p class="font english-text">
+            <strong class="str_cat">Meaning:</strong>
+            <span>${meaning}</span>
+          </p>
+
+          <div class="proverb-actions">
+            <button class="custom-button card-delete-btn" title="Delete">
+              <svg viewBox="0 0 448 512" class="custom-svgIcon">
+                <path
+                  d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"
+                ></path>
+              </svg>
+            </button>
+
+            <button class="custom-cta card-update-btn">
+              <span>Update</span>
+              <svg width="15px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+`;
+
+  const cardWrapper = document.querySelector(".card-wrapper");
+  if (cardWrapper) {
+    cardWrapper.insertAdjacentHTML("beforeend", newCardHTML);
+  }
+
+  // Clear inputs
+  document.getElementById("newCategory").value = "";
+  document.getElementById("newTextDari").value = "";
+  document.getElementById("newTextPashto").value = "";
+  document.getElementById("newTranslationEn").value = "";
+  document.getElementById("newMeaning").value = "";
+});

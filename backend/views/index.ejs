@@ -181,8 +181,12 @@
                 </div>
               </div>
             </a>
+
             <% }) %>
           </div>
+        </div>
+        <div class="add-button-container">
+          <button id="open-add-modal" class="btn btn-add">+ Add Proverb</button>
         </div>
       </section>
     </main>
@@ -225,6 +229,71 @@
           <div class="modal-buttons">
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="button" id="edit-cancel" class="btn btn-secondary">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Add Modal -->
+    <div id="add-modal" class="modal-overlay-add" style="display: none">
+      <div class="modal-content-add">
+        <form
+          id="add-form"
+          class="modal-form-add"
+          method="POST"
+          action="/proverbs"
+        >
+          <label for="add-textDari"><p class="dari-text">متن دری</p></label>
+          <textarea
+            id="add-textDari"
+            name="textDari"
+            rows="2"
+            required
+            class="dari-text"
+          ></textarea>
+
+          <label for="add-textPashto"
+            ><p class="pashto-text">متن پشتو</p></label
+          >
+          <textarea
+            id="add-textPashto"
+            name="textPashto"
+            rows="2"
+            required
+            class="pashto-text"
+          ></textarea>
+
+          <label for="add-translationEn" class="english-text"
+            >English Translation</label
+          >
+          <input
+            type="text"
+            id="add-translationEn"
+            name="translationEn"
+            required
+          />
+
+          <label for="add-meaning" class="english-text">Meaning</label>
+          <textarea
+            id="add-meaning"
+            name="meaning"
+            rows="3"
+            required
+          ></textarea>
+
+          <label for="add-category">Category</label>
+          <select id="add-category" name="category" required>
+            <option value="" disabled selected>Select category</option>
+            <option value="Wisdom">Wisdom</option>
+            <option value="Humor">Humor</option>
+            <option value="Life">Life</option>
+            <option value="Culture">Culture</option>
+          </select>
+
+          <div class="modal-buttons">
+            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="button" id="add-cancel" class="btn btn-secondary">
               Cancel
             </button>
           </div>
