@@ -438,16 +438,18 @@ a.card {
     max-width: 720px;
     
   }
-  .card-wraper {
-    grid-template-columns: repeat(1, minmax(0, 2fr));
+  .card-wrapper {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+
 }
 
 @media screen and (max-width: 767px) {
   .container {
-    max-width: 520px;
+    max-width: 500px;
+    
   }
-  .card-wraper {
+  .card-wrapper {
     grid-template-columns: repeat(1, minmax(0, 2fr));
   }
   .card-main {
@@ -460,9 +462,9 @@ a.card {
 
 @media screen and (max-width: 575px) {
   .container {
-    max-width: 100%;
+    max-width: 80%;
   }
-  .card-wraper {
+  .card-wrapper {
     grid-template-columns: repeat(1, minmax(0, 2fr));
   }
   .card-main {

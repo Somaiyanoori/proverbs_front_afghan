@@ -86,9 +86,9 @@ app.get("/api/proverbs", (req, res) => {
   res.json(proverbs);
 });
 
-// PUT: Update an existing proverb
 app.put("/proverbs/:id", (req, res) => {
   const id = Number(req.params.id);
+  const updatedProverb = req.body; // Get the updated data from request body
 
   const proverbs = readData();
   const index = proverbs.findIndex((p) => p.id === id);
@@ -97,6 +97,7 @@ app.put("/proverbs/:id", (req, res) => {
     return res.status(404).json({ message: "Proverb not found." });
   }
 
+  // Merge existing proverb with updated data, keeping id fixed
   proverbs[index] = { ...proverbs[index], ...updatedProverb, id };
 
   writeData(proverbs);
