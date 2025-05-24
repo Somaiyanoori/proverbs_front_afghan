@@ -105,11 +105,11 @@ body {
 
 @media (max-width: 440px) {
   .ap-nav {
-    width: 95%;
+    width: 98%;
   }
 
   .ap-container {
-    padding: 0.5em;
+    padding: 0.4em;
   }
 
   .ap-btn {
