@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const dataPath = path.join(__dirname, "data/proverbs.json");
 
 // Set EJS as view engine and static folder
