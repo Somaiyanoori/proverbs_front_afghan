@@ -88,20 +88,22 @@
           </div>
         </div>
         <div class="slider-controls">
-          <button class="slider-prev">
-            <i class="fa-solid fa-arrow-left"></i>
-          </button>
-          <button class="slider-next">
-            <i class="fa-solid fa-arrow-right"></i>
-          </button>
+          <div class="slider-controls">
+            <button
+              class="slider-prev"
+              aria-label="Previous Slide"
+              title="Previous"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button class="slider-next" aria-label="Next Slide" title="Next">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- ===================== Search Form ===================== -->
-      <form class="search-form" action="/proverbs/search" method="POST">
-        <input type="search" name="keyword" placeholder="Search here ..." />
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
+      <br />
 
       <!-- ===================== Category Buttons ===================== -->
       <section id="category">

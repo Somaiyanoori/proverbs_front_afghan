@@ -1,27 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("JavaScript loaded!");
 
-  // Slider navigation
   const next = document.querySelector(".slider-next");
   const prev = document.querySelector(".slider-prev");
+  const track = document.querySelector(".slider-track");
+
+  function updateSliderContent() {
+    const cards = document.querySelectorAll(".slider-card");
+    cards.forEach((card, index) => {
+      const content = card.querySelector(".slider-content");
+      if (content) {
+        content.style.display = index === 1 ? "block" : "none";
+      }
+    });
+  }
+
+  function fadeAndMove(direction) {
+    const cards = document.querySelectorAll(".slider-card");
+    track.style.transition = "opacity 0.3s";
+    track.style.opacity = "0.5";
+
+    setTimeout(() => {
+      if (direction === "next") {
+        track.appendChild(cards[0]);
+      } else if (direction === "prev") {
+        track.prepend(cards[cards.length - 1]);
+      }
+
+      updateSliderContent();
+      track.style.opacity = "1";
+    }, 200);
+  }
 
   if (next && prev) {
-    next.addEventListener("click", () => {
-      const cards = document.querySelectorAll(".slider-card");
-      document.querySelector(".slider-track").appendChild(cards[0]);
-    });
-
-    prev.addEventListener("click", () => {
-      const cards = document.querySelectorAll(".slider-card");
-      document.querySelector(".slider-track").prepend(cards[cards.length - 1]);
-    });
+    next.addEventListener("click", () => fadeAndMove("next"));
+    prev.addEventListener("click", () => fadeAndMove("prev"));
   }
 
   // Category button click
   document.querySelectorAll(".cat-btn").forEach((button) => {
     button.addEventListener("click", () => {
       const category = button.getAttribute("data-category");
-      // Redirect and add #proverbs to scroll to that section
+
       window.location.href = `/proverbs?category=${encodeURIComponent(
         category
       )}#proverbs`;

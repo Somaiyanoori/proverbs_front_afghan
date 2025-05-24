@@ -11,108 +11,113 @@ body {
     scroll-behavior: smooth;
   }
 /*================================Navbar============================*/
+.ap-nav {
+  position: relative;
+  width: 100%;
+  max-width: 530px;
+  height: 60px;
+  margin: 20px auto 0 auto;
+  box-sizing: border-box;
+}
+
+.ap-container {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(50px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5em;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(95, 176, 217, 0.5);
+  width: 100%;
+}
+
+.ap-btn {
+  padding: 0.5em 1.5em;
+  color: #76c4ea;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 600;
+  user-select: none;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.ap-btn:hover {
+  background: rgba(91, 190, 235, 0.25);
+  color: white;
+  border-radius: 8px;
+}
+
+.ap-outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ap-rect {
+  stroke-dashoffset: 5;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s;
+  stroke: #6cbfe9;
+  stroke-width: 5;
+  fill: transparent;
+  rx: 12;
+  ry: 12;
+}
+
+.ap-container:hover .ap-outline .ap-rect {
+  transition: 999999s;
+  stroke-dashoffset: 1;
+  stroke-dasharray: 0;
+}
+
+.ap-btn:nth-child(1):hover ~ svg .ap-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 2 8 73.3 8 10.7;
+}
+
+.ap-btn:nth-child(2):hover ~ svg .ap-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
+}
+
+.ap-btn:nth-child(3):hover ~ svg .ap-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
+}
+
+.ap-btn:nth-child(4):hover ~ svg .ap-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
+}
+
+.ap-btn:hover ~ .ap-outline .ap-rect {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 0 0 10 40 10 40;
+  transition: 0.5s !important;
+}
+
+@media (max-width: 440px) {
   .ap-nav {
-    position: relative;
-    width: 530px;
-    height: 60px;
-    margin: 20px auto 0 auto;
+    width: 95%;
   }
-  
+
   .ap-container {
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(50px);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     padding: 0.5em;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(95, 176, 217, 0.5);
   }
-  
+
   .ap-btn {
-    padding: 0.5em 1.5em;
-    color: #76c4ea;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-    font-weight: 600;
-    user-select: none;
+    padding: 0.5em 1.2em;
+    font-size: 16px;
   }
-  
-  .ap-btn:hover {
-    background: rgba(91, 190, 235, 0.25);
-    color: white;
-    border-radius: 8px;
-  }
-  
-  .ap-outline {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-  
-  .ap-rect {
-    stroke-dashoffset: 5;
-    stroke-dasharray: 0 0 10 40 10 40;
-    transition: 0.5s;
-    stroke: #6cbfe9;
-    stroke-width: 5;
-    fill: transparent;
-    rx: 12;
-    ry: 12;
-  }
-  
-  .ap-container:hover .ap-outline .ap-rect {
-    transition: 999999s;
-    stroke-dashoffset: 1;
-    stroke-dasharray: 0;
-  }
-  
-  .ap-btn:nth-child(1):hover ~ svg .ap-rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 2 8 73.3 8 10.7;
-  }
-  
-  .ap-btn:nth-child(2):hover ~ svg .ap-rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 12.6 9.5 49.3 9.5 31.6;
-  }
-  
-  .ap-btn:nth-child(3):hover ~ svg .ap-rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 24.5 8.5 27.5 8.5 55.5;
-  }
-  
-  .ap-btn:nth-child(4):hover ~ svg .ap-rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 34.7 6.9 10.2 6.9 76;
-  }
-  
-  .ap-btn:hover ~ .ap-outline .ap-rect {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 0 0 10 40 10 40;
-    transition: 0.5s !important;
-  }
-  
-  @media (max-width: 440px) {
-    .ap-nav {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto 0 auto;
-    }
-  
-    .ap-container {
-      padding: 0.3em;
-    }
-  
-    .ap-btn {
-      padding: 0.4em 0.8em;
-      font-size: 14px;
-    }
-  }
-  
+}
+
  /* ================================Slider======================== */
  .slider-container {
   margin: 0 auto;                
@@ -130,8 +135,8 @@ body {
   width: 200px;
   height: 300px;
   position: absolute;
-  top: 75%;
-  transform: translate(0, -50%);
+  top: 50%;
+   transition: opacity 0.3s ease-in-out;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -256,9 +261,15 @@ body {
 }
 
 @media (max-width: 480px) {
+  .slider-container {
+  margin: 30px auto;                
+  width: 90vw;
+  height: 85vh;
+}
   .slider-track .slider-card {
     width: 170px;
-    height: 150px;
+    height: 200px;
+    top: 60%;
   }
 
   .slider-content {
@@ -279,65 +290,7 @@ body {
     padding: 6px 12px;
   }
 }
-/*============================Searching========================*/
-.search-form {
-  position: relative;
-  top:140px;
-  left: 70%;
-  transform: translate(-50%, -50%);
-  transition: all 1s;
-  width: 50px;
-  height: 50px;
-  background: white;
-  box-sizing: border-box;
-  border-radius: 25px;
-  border: 4px solid white;
-  padding: 5px;
-}
 
-.search-form input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 42.5px;
-  line-height: 30px;
-  outline: 0;
-  border: 0;
-  display: none;
-  font-size: 1em;
-  border-radius: 20px;
-  padding: 0 20px;
-}
-
-.search-form .fa {
-  box-sizing: border-box;
-  padding: 10px;
-  width: 42.5px;
-  height: 42.5px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 50%;
-  color: #527aff;
-  text-align: center;
-  font-size: 1.2em;
-  transition: all 1s;
-}
-
-.search-form:hover {
-  width: 300px;
-  cursor: pointer;
-}
-
-.search-form:hover input {
-  display: block;
-}
-
-.search-form:hover .fa {
-  background: #5297ff;
-  color: white;
-}
 
 
 /*===============================CARDS====================*/
@@ -462,7 +415,7 @@ a.card {
 
 @media screen and (max-width: 575px) {
   .container {
-    max-width: 80%;
+    max-width: 100%;
   }
   .card-wrapper {
     grid-template-columns: repeat(1, minmax(0, 2fr));
@@ -800,7 +753,7 @@ a.card {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
-  margin: 20px 0;
+  margin: 40px 0;
 }
 
 .cat-btn {
